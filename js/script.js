@@ -110,8 +110,6 @@ function visualiza_nota(nota, quantidade) {
 }
 
 document.getElementById("ok").onclick = function () {
-  // document.getElementById("tela").innerText = " ok ";
-
   if (typeof arr === "string") {
     // entra a funcao para sacar...
     if (soma_objeto(notas) < parseInt(arr)) {
