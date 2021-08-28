@@ -1,0 +1,136 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-image: linear-gradient(45deg, #babbbd, #444446);
+}
+
+#caixa {
+  width: 215px;
+  height: 280px;
+  flex-direction: row;
+  column-count: 3;
+  background-color: #dbd9da;
+  padding: 5px;
+  justify-content: space-around;
+
+  align-items: center;
+
+  display: flex;
+
+  flex-wrap: wrap;
+}
+
+#caixa div {
+  display: flex;
+
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.botao {
+  background: #cccccc;
+  border: 1px solid rgb(121, 120, 120);
+  width: 55px;
+  height: 55px;
+  text-shadow: 1px 1px 0 #fff;
+  box-shadow: 2px 2px 0 0px;
+  justify-content: space-around;
+  font-size: xxx-large;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tela {
+  width: 80%;
+  max-width: 800px;
+  height: 40%;
+  max-height: 400px;
+
+  border: 34px solid rgb(89, 89, 89);
+  background-image: linear-gradient(to right, #0099fa, #a8d9fb);
+
+  margin: 0 auto;
+
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  border-style: solid;
+  border-top-color: #6e6769;
+  border-radius: 12px;
+
+  border-left-color: #787878;
+  border-right-color: #9f989a;
+  border-bottom-color: white;
+  text-align: center;
+  font-family: system-ui;
+  font-size: xx-large;
+  justify-content: center;
+  display: flex;
+
+  align-items: center;
+  margin: auto;
+
+  color: #fff;
+}
+
+.painel {
+  align-items: center;
+  background-color: #0099fa;
+  display: flex;
+}
+body > div.painel > div:nth-child(2) > div {
+  width: 140px;
+  text-align: center;
+}
+#ok {
+  width: 128px;
+  background-color: rgb(45, 173, 45);
+}
+
+#saque,
+#saldo {
+  width: 170px;
+  background-color: rgb(45, 173, 45);
+}
+
+@keyframes animacao {
+  0% {
+    margin-left: 0%;
+    opacity: 0;
+    transform: translatey(-500px);
+  }
+  30% {
+    opacity: 1;
+    transform: rotate(360deg);
+    margin-left: 0%;
+  }
+
+  100% {
+    margin-left: calc(100% - 150px);
+  }
+}
+
+.imagem_nota {
+  width: 100px;
+  height: 50px;
+  transform: rotate(90deg);
+}
+.div_notas {
+  background-color: red;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* background: lighten($red, 3%);  
+border: 1px solid darken($red, 4%);
+box-shadow: 0px 2px 0 darken($red, 5%), 2px 4px 6px darken($red, 2%);
+font-weight: 900;
+letter-spacing: 1px;
+transition: all 150ms linear; */
