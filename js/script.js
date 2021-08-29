@@ -1,4 +1,4 @@
-let saldo = 750.5;
+let saldo = 122.5;
 let notas = {
   1: 10,
   2: 12,
@@ -99,7 +99,7 @@ function visualiza_nota(nota, quantidade) {
   div_nota.appendChild(bolinha);
 
   let oImg = document.createElement("img");
-  oImg.setAttribute("src", "/img/" + nota + ".jpg");
+  oImg.setAttribute("src", "./img/" + nota + ".jpg");
   oImg.classList.add("imagem_nota");
 
   div_nota.appendChild(oImg);
