@@ -4,6 +4,7 @@ body {
   margin: 0;
   background-image: linear-gradient(45deg, #babbbd, #444446);
   padding-top: 1%;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #caixa {
@@ -128,9 +129,10 @@ body > div.painel > div {
   left: -22px;
 }
 .div_valor_nota {
-  background-color: rgb(245, 163, 163);
+  background-color: rgb(58 173 45 / 48%);
   width: 35px !important;
   height: 35px;
+  border: 1px solid #9d9c9c;
   border-radius: 50%;
   justify-content: center;
   display: flex;
@@ -138,6 +140,7 @@ body > div.painel > div {
   position: relative;
   z-index: 1;
   margin: 0 auto;
+  font-weight: bold;
 }
 
 #boca_caixa {
