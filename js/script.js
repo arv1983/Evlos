@@ -1,4 +1,4 @@
-let saldo = 150.5;
+let saldo = 750.5;
 let notas = {
   1: 10,
   2: 12,
@@ -9,6 +9,9 @@ let notas = {
   100: 1,
 };
 
+function formata_valor(saldo) {
+  return saldo.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
 function soma_objeto(obj) {
   let soma_tudo = 0;
   Object.keys(obj).map((v, i) => {
@@ -57,7 +60,10 @@ function gera_botao(valor) {
       valor_teclado = `${valor_teclado}${valor}`;
     }
     sacar();
-    document.getElementById("tela").innerText += "R$ " + valor_teclado;
+
+    document.getElementById("tela").innerText += formata_valor(
+      parseInt(valor_teclado)
+    );
   };
 }
 
@@ -113,7 +119,7 @@ document.getElementById("ok").onclick = function () {
 
     if (soma_objeto(notas) < parseInt(valor_teclado)) {
       document.getElementById("tela").innerText =
-        " Infelizmente temos apenas R$ " + soma_objeto(notas);
+        " Infelizmente temos apenas " + formata_valor(soma_objeto(notas));
       return;
     }
 
@@ -144,7 +150,8 @@ document.getElementById("saldo").onclick = function () {
 
 function mostra_saldo() {
   valor_teclado = undefined;
-  document.getElementById("tela").innerText = " Seu saldo: R$ " + saldo;
+  document.getElementById("tela").innerText =
+    " Seu saldo: " + formata_valor(saldo);
 }
 
 habilita_desabilita_teclado();
