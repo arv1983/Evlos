@@ -1,4 +1,4 @@
-let saldo = 1000.5;
+let saldo = 150.5;
 let notas = {
   1: 10,
   2: 12,
@@ -19,17 +19,8 @@ function soma_objeto(obj) {
 
 function saque(saldo, retirar, notas) {
   let notas_a_tirar = {};
-  let dinheiro_em_caixa = soma_objeto(notas);
+
   let total = 0;
-
-  if (dinheiro_em_caixa < retirar) {
-    console.log("é menor");
-  }
-
-  if (saldo < retirar) {
-    document.getElementById("tela").innerText = " Saldo insuficiente. ";
-    return;
-  }
 
   Object.keys(notas)
     .sort((a, b) => (a[0] = -b[0]))
@@ -50,36 +41,32 @@ function saque(saldo, retirar, notas) {
   return notas_a_tirar;
 }
 
-//gera botoes
-
-let arr;
+// INICIO GERADOR DE BOTOES
+let valor_teclado;
 function gera_botao(valor) {
-  var botao = document.createElement("div");
+  var botao = document.createElement("button");
   botao.setAttribute("id", valor);
   botao.setAttribute("order", valor);
   botao.setAttribute("class", "botao");
   botao.innerHTML = valor;
 
   document.getElementById("caixa").appendChild(botao).onclick = function () {
-    if (typeof arr === "undefined") {
-      arr = `${valor}`;
+    if (typeof valor_teclado === "undefined") {
+      valor_teclado = `${valor}`;
     } else {
-      arr = `${arr}${valor}`;
+      valor_teclado = `${valor_teclado}${valor}`;
     }
     sacar();
-    document.getElementById("tela").innerText += "R$ " + arr;
+    document.getElementById("tela").innerText += "R$ " + valor_teclado;
   };
 }
 
-// inicio gerador de botoes
 for (let i = 1; i <= 9; i++) {
   gera_botao(i);
 }
 gera_botao(0);
 gera_botao("ok");
-// fim gerador de botoes
-
-// mostra_saldo();
+// FIM GERADOR DE BOTOES
 
 function sacar() {
   document.getElementById("tela").innerText = " Quanto quer sacar? ";
@@ -87,47 +74,55 @@ function sacar() {
 }
 
 document.getElementById("saque").onclick = function () {
-  var visivel = document.getElementById("saque");
+  let visivel = document.getElementById("saque");
   visivel.disabled = "disabled";
 
-  if (typeof arr === "undefined") {
+  habilita_desabilita_teclado(true);
+  if (typeof valor_teclado === "undefined") {
     sacar();
   }
 };
 
 function visualiza_nota(nota, quantidade) {
   let div_boca_caixa = document.getElementById("boca_caixa");
-
-  var node = document.createElement("DIV");
-
-  var bolinha = document.createElement("DIV");
+  let div_nota = document.createElement("DIV");
+  let bolinha = document.createElement("DIV");
 
   bolinha.classList.add("div_valor_nota");
   bolinha.innerText = quantidade;
-  node.appendChild(bolinha);
+  div_nota.appendChild(bolinha);
 
-  var oImg = document.createElement("img");
+  let oImg = document.createElement("img");
   oImg.setAttribute("src", "/img/" + nota + ".jpg");
   oImg.classList.add("imagem_nota");
 
-  node.appendChild(oImg);
-  div_boca_caixa.appendChild(node);
+  div_nota.appendChild(oImg);
+  div_boca_caixa.appendChild(div_nota);
 }
 
 document.getElementById("ok").onclick = function () {
-  if (typeof arr === "string") {
+  if (typeof valor_teclado === "string") {
+    habilita_desabilita_teclado();
     // entra a funcao para sacar...
-    if (soma_objeto(notas) < parseInt(arr)) {
+
+    // funcionando ok
+    if (parseInt(valor_teclado) > saldo) {
+      document.getElementById("tela").innerText = " Saldo insuficiente";
+      return;
+    }
+
+    if (soma_objeto(notas) < parseInt(valor_teclado)) {
       document.getElementById("tela").innerText =
         " Infelizmente temos apenas R$ " + soma_objeto(notas);
       return;
     }
-    arr = parseInt(arr);
+
+    valor_teclado = parseInt(valor_teclado);
 
     document.getElementById("tela").innerText = " Retire seu dinheiro ";
-    let retirada = saque(saldo, arr, notas);
-    saldo -= arr;
-    arr = undefined;
+    let retirada = saque(saldo, valor_teclado, notas);
+    saldo -= valor_teclado;
+    valor_teclado = undefined;
 
     var visivel = document.getElementById("saque");
     visivel.disabled = "";
@@ -143,12 +138,28 @@ document.getElementById("ok").onclick = function () {
 document.getElementById("saldo").onclick = function () {
   var visivel = document.getElementById("saque");
   visivel.disabled = "";
-
+  habilita_desabilita_teclado();
   mostra_saldo();
 };
 
 function mostra_saldo() {
-  arr = undefined;
-  console.log("saldo");
+  valor_teclado = undefined;
   document.getElementById("tela").innerText = " Seu saldo: R$ " + saldo;
+}
+
+habilita_desabilita_teclado();
+function habilita_desabilita_teclado(bool) {
+  var visivel = document.querySelectorAll(
+    "#ok, [id='0'], [id='1'], [id='2'],[id='3'],[id='4'],[id='5'],[id='6'],[id='7'],[id='8'],[id='9']"
+  );
+
+  if (bool) {
+    for (var i = 0; i < visivel.length; i++) {
+      visivel[i].disabled = "";
+    }
+  } else {
+    for (var i = 0; i < visivel.length; i++) {
+      visivel[i].disabled = "disabled";
+    }
+  }
 }

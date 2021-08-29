@@ -3,6 +3,7 @@ body {
   height: 100%;
   margin: 0;
   background-image: linear-gradient(45deg, #babbbd, #444446);
+  padding-top: 1%;
 }
 
 #caixa {
@@ -34,11 +35,17 @@ body {
   width: 55px;
   height: 55px;
   text-shadow: 1px 1px 0 #fff;
-  box-shadow: 2px 2px 0 0px;
+  box-shadow: 2px 2px 0 1px;
   justify-content: space-around;
   font-size: xxx-large;
   border-radius: 8px;
   cursor: pointer;
+}
+
+button:active {
+  box-shadow: 2px 2px 0 0px;
+
+  transform: translate(1px, 1px);
 }
 .tela {
   width: 80%;
@@ -75,14 +82,12 @@ body {
 }
 
 .painel {
-  background-color: #0099fa;
   display: flex;
   justify-content: center;
 }
 body > div.painel > div {
   width: 400px;
   text-align: center;
-  background-color: rgb(255, 118, 221);
 }
 #ok {
   width: 128px;
@@ -145,4 +150,67 @@ body > div.painel > div {
 }
 #boca_caixa div {
   width: 55px;
+}
+
+@media (max-width: 600px) {
+  #boca_caixa {
+    width: 100%;
+  }
+  .tela {
+    height: 28%;
+    border: 25px solid rgb(89, 89, 89);
+    border-style: solid;
+    border-top-color: #6e6769;
+    border-radius: 12px;
+
+    border-left-color: #787878;
+    border-right-color: #9f989a;
+    border-bottom-color: white;
+  }
+  .painel {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  body > div.painel > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  #caixa {
+    width: 167px;
+    height: 210px;
+    padding: 1px;
+  }
+
+  .botao,
+  #ok {
+    background: #cccccc;
+    border: 1px solid rgb(121, 120, 120);
+    width: 45px;
+    height: 45px;
+    text-shadow: 1px 1px 0 #fff;
+    box-shadow: 2px 2px 0 0px;
+    justify-content: space-around;
+    font-size: xx-large;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #ok,
+  #saque,
+  #saldo {
+    width: 103px;
+    background-color: rgb(45, 173, 45);
+  }
+
+
+  @media (max-height: 570px) {
+    #caixa {
+      width: 220px;
+      height: 160px;
+    }
+
 }
