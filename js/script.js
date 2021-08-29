@@ -79,7 +79,7 @@ gera_botao(0);
 gera_botao("ok");
 // fim gerador de botoes
 
-mostra_saldo();
+// mostra_saldo();
 
 function sacar() {
   document.getElementById("tela").innerText = " Quanto quer sacar? ";
@@ -96,17 +96,22 @@ document.getElementById("saque").onclick = function () {
 };
 
 function visualiza_nota(nota, quantidade) {
+  let div_boca_caixa = document.getElementById("boca_caixa");
+
   var node = document.createElement("DIV");
-  var textnode = document.createTextNode(quantidade);
-  node.classList.add("div_notas");
-  node.appendChild(textnode);
-  document.getElementById("boca_caixa").appendChild(node);
+
+  var bolinha = document.createElement("DIV");
+
+  bolinha.classList.add("div_valor_nota");
+  bolinha.innerText = quantidade;
+  node.appendChild(bolinha);
 
   var oImg = document.createElement("img");
   oImg.setAttribute("src", "/img/" + nota + ".jpg");
   oImg.classList.add("imagem_nota");
 
-  document.getElementById("boca_caixa").appendChild(oImg);
+  node.appendChild(oImg);
+  div_boca_caixa.appendChild(node);
 }
 
 document.getElementById("ok").onclick = function () {
@@ -124,13 +129,10 @@ document.getElementById("ok").onclick = function () {
     saldo -= arr;
     arr = undefined;
 
-    console.log(soma_objeto(notas));
-    console.log(retirada);
-    console.log(soma_objeto(retirada));
-
     var visivel = document.getElementById("saque");
     visivel.disabled = "";
-
+    let div_boca_caixa = document.getElementById("boca_caixa");
+    div_boca_caixa.innerHTML = "";
     //mostra notas
     Object.keys(retirada).map((nota, i) => {
       visualiza_nota(nota, retirada[nota]);
@@ -149,10 +151,4 @@ function mostra_saldo() {
   arr = undefined;
   console.log("saldo");
   document.getElementById("tela").innerText = " Seu saldo: R$ " + saldo;
-  // document.getElementById("nota1").style.removeClass(".nota1");
-
-  // element.classList.remove("nota1");
-
-  // document.querySelector(".nota1").style.animation = "";
-  // document.querySelector(".nota1").style.animation = "animacao";
 }
